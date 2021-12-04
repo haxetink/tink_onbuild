@@ -14,6 +14,7 @@ class OnBuild {
     Context.onAfterGenerate(() -> after.process(typesFound));
   }
 
+  static public inline var EXPR_PASS = 'tink.OnBuild::exprPass';
   static public final before = new Passes();
   static public final after = new Passes();
   static var typesFound = null;
@@ -107,7 +108,7 @@ private class Passes {
   public function new() {
     this.exprs = new Queue();
     this.types = new Queue();
-    this.types.whenever(traverse);
+    this.types.whenever(traverse, OnBuild.EXPR_PASS);
   }
 
   public function process(found:ReadOnlyArray<Type>) {
