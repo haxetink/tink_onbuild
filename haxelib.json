@@ -2,6 +2,7 @@
   "name": "tink_onbuild",
   "license": "MIT",
   "tags": [
+    "tink",
     "macro"
   ],
   "classPath": "src",
@@ -10,7 +11,7 @@
   ],
   "releasenote": "initial release",
   "version": "0.0.0",
-  "url": "https://github.com/haxetink/tink_onbuild/",
+  "url": "https://haxetink.github.io/tink_onbuild/",
   "dependencies": {
     "tink_priority": "",
     "tink_core": ""
