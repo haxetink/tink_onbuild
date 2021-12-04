@@ -33,4 +33,4 @@ Because the data structures of the macro APIs are mutable and the data is shared
 
 ### Cache typed AST `-D tink_onbuild.cache_tast`
 
-Setting this define will make it so that any field's typed AST is cached.
+Setting this define will make it so that any field's typed AST is cached. Normally, this in not required. If you do wish to access field expressions from type passes, turning on this flag may improve performance (it will however keep *all* decoded typed AST in memory).
