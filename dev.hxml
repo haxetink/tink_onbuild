@@ -1,0 +1,4 @@
+tests.hxml
+-lib onGenerate
+-lib travix
+--interp
