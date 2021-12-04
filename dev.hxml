@@ -1,4 +1,4 @@
 tests.hxml
--lib onGenerate
+-lib tink_onbuild
 -lib travix
 --interp

@@ -1,5 +1,5 @@
 {
-  "name": "onGenerate",
+  "name": "tink_onbuild",
   "license": "MIT",
   "tags": [
     "macro"
@@ -10,6 +10,9 @@
   ],
   "releasenote": "initial release",
   "version": "0.0.0",
-  "url": "https://github.com/back2dos/onGenerate/",
-  "dependencies": {}
+  "url": "https://github.com/haxetink/tink_onbuild/",
+  "dependencies": {
+    "tink_priority": "",
+    "tink_core": ""
+  }
 }
