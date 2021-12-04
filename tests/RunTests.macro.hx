@@ -2,7 +2,7 @@ package ;
 
 class RunTests {
   static function test() {
-    tink.OnBuild.before.exprs.whenever(t -> e -> switch e {
+    tink.OnBuild.before.exprs.whenever(t -> c -> e -> switch e {
       case { expr: TConst(TString(c)) }: trace(c);
       default:
     });

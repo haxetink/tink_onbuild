@@ -103,7 +103,7 @@ private class Once<T> {
 
 private class Passes {
   public final types:Queue<ReadOnlyArray<Type>->Void>;
-  public final exprs:Queue<Type->Null<TypedExpr->Void>>;
+  public final exprs:Queue<Type->Null<ClassField->Null<TypedExpr->Void>>>;
   public function new() {
     this.exprs = new Queue();
     this.types = new Queue();
@@ -115,7 +115,23 @@ private class Passes {
       t(found);
   }
 
+  static var tast = new eval.Vector(1024);
+
   function traverse(found:ReadOnlyArray<Type>) {
+
+    var count = 0,
+        max = tast.length,
+        tast = tast;
+
+    inline function push(expr) {
+      if (count == max) {
+        tast = new eval.Vector(max * 2);
+        Passes.tast.blit(0, tast, 0, max);
+        max *= 2;
+        Passes.tast = tast;
+      }
+      tast[count++] = expr;
+    }
 
     for (t in found) {
       var funcs = [for (e in exprs) switch e(t) {
@@ -123,16 +139,30 @@ private class Passes {
         case v: v;
       }];
 
-      function field(c:ClassField)
-        switch c.expr() {
-          case null:
-          case e:
-            (function drill(e) {
-              for (f in funcs)
-                f(e);
-              e.iter(drill);
-            })(e);
-        }
+      if (funcs.length == 0) continue;
+
+      function field(c:ClassField) {
+        count = -1;
+        for (f in funcs)
+          switch f(c) {
+            case null:
+            case cb:
+              if (count == -1) {
+                count = 0;
+                switch c.expr() {
+                  case null:
+                  case e:
+                    (function drill(e:TypedExpr) {
+                      push(e);
+                      e.iter(drill);
+                    })(e);
+                }
+              }
+              for (i in 0...count)
+                cb(tast[i]);
+          };
+
+      }
 
       switch t {
         case TInst(_.get() => c, _):
