@@ -1,19 +1,19 @@
 {
-  "name": "tink_onbuild",
-  "license": "MIT",
-  "tags": [
-    "tink",
-    "macro"
-  ],
-  "classPath": "src",
-  "contributors": [
-    "back2dos"
-  ],
-  "releasenote": "initial release",
-  "version": "0.0.0",
-  "url": "https://haxetink.github.io/tink_onbuild/",
-  "dependencies": {
-    "tink_priority": "",
-    "tink_core": ""
-  }
+	"name": "tink_onbuild",
+	"classPath": "src",
+	"dependencies": {
+		"tink_priority": "",
+		"tink_core": ""
+	},
+	"url": "https://haxetink.github.io/tink_onbuild/",
+	"contributors": [
+		"back2dos"
+	],
+	"version": "0.1.0",
+	"releasenote": "Initial release.",
+	"tags": [
+		"tink",
+		"macro"
+	],
+	"license": "MIT"
 }
