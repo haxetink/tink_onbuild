@@ -60,20 +60,18 @@ class OnBuild {
   }
 
   static function pass(types:Array<Type>) {
-    for (i => t in types)
-      types[i] = switch t {
+    for (i in 0...types.length)
+      types[i] = switch types[i] {
         // case TEnum(t, params):
         case TInst(t, params):
           TInst(cls(t), params);
 
         // case TAbstract(t, params):
         //   TAbstract(new Once(t), params);
-        default: t;
+        case t: t;
       }
 
     before.process(typesFound = types);
-    // for (p in passes)
-
   }
 }
 
